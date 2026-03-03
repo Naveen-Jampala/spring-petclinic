@@ -10,6 +10,7 @@ pipeline {
                  branch : 'main'
             }
         } 
+        stage('build & scan'){
             steps{
               withCredentials([string(credentialsId:'sonar_id',variable:'SONAR_TOKEN')]) {
                     withSonarQubeEnv('SONAR') {
@@ -23,5 +24,6 @@ pipeline {
             }
         }
     }
+}
 //-DskipTest to skip dockor bcoz we're running without docker
 // //-dsonar.project key from sonarcloud projectid & organisation id from sonarcloud which org inside the project.
