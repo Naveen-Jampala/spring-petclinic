@@ -23,7 +23,14 @@ pipeline {
                 }
             }
         }
+        stage('Quality Gate') {
+            steps{
+                timeout(time: 5, unit: 'MINUTES') {
+                    waitForQualityGate abortpipeline: true
+                }
+            }
+        }
     }
 }
 //-DskipTest to skip dockor bcoz we're running without docker
-// //-dsonar.project key from sonarcloud projectid & organisation id from sonarcloud which org inside the project.
+//-dsonar.project key from sonarcloud projectid & organisation id from sonarcloud which org inside the project....
