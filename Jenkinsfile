@@ -17,7 +17,7 @@ pipeline {
                     sh """mvn package sonar:sonar \
                          -Dsonar.projectKey=JAVA-SPC_spring-petclinic \
                          -Dsonar.organization=java-spc \
-                         -Dsonar.host.url=https://sonarcloud.io \  
+                         -Dsonar.host.url=https://sonarcloud.io/ \
                          -Dsonar.login=$SONAR_TOKEN """
                     }
                 }
