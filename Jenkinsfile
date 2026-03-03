@@ -14,7 +14,7 @@ pipeline {
             steps{
               withCredentials([string(credentialsId:'sonar_id',variable:'SONAR_TOKEN')]) {
                     withSonarQubeEnv('SONAR') {
-                    sh """mvn package sonar:sonar -DskipTests \    
+                    sh """mvn package sonar:sonar \    
                          -Dsonar.projectKey=JAVA-SPC_spring-petclinic \
                          -Dsonar.organization=java-spc \
                          -Dsonar.host.url=https://sonarcloud.io/ \
