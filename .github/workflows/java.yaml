@@ -20,6 +20,6 @@ jobs:
           SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}
           SONAR_HOST_URL: ${{secrets.SONAR_HOST_URL}}
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
-          -Dsonar.organization = naveen-jampala \
-          -Dsonar.host.url = $SONAR_HOST_URL \
-          -Dsonar.token = $SONAR_TOKEN
+          -Dsonar.organization=naveen-jampala \
+          -Dsonar.host.url=$SONAR_HOST_URL \
+          -Dsonar.token=$SONAR_TOKEN
