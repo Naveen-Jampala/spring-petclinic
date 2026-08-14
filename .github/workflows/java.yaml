@@ -8,17 +8,18 @@ on:
 jobs:
   build:                    #telling it that build or deploy job
     name: my-spc            #name: our wish
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Git_checkout
         uses: actions/checkout@v4
 
-      - name: sonarqube scan
+      - name: Build and analyze
+        uses: SonarSource?sonarqube-scan-action@v4
         env:
-          SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}
-        run: | 
-          mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
-            -Dsonar.projectKey=naveen-jampala_spring-petclinic \
-            -Dsonar.organization=naveen-jampala \
-            -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.token=$SONAR_TOKEN
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        with:
+          args: >
+            -Dsonar.projectKey=naveen-jampala_spring-petclinic
+            -Dsonar.organization=naveen-jampala
+           "-Dsonar.projectName=spring-petclinic"
