@@ -17,8 +17,8 @@ jobs:
         env:
           SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}
         run: | 
-          mvn -B verify sonar:sonar \
-            -Dsonar.projectKey=Naveen-Jampala_spring-petclinic \
+          mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+            -Dsonar.projectKey=naveen-jampala_spring-petclinic \
             -Dsonar.organization=naveen-jampala \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.token=$SONAR_TOKEN
