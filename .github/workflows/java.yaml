@@ -20,17 +20,14 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
+          cache: maven
 
-      - name: build java with maven
-        run: mvn package -DskipTests
-
-      - name: Build and analyze
-        uses: SonarSource/sonarqube-scan-action@v4
+      - name: Build and analyze with maven
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-        with:
-         args: >
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }} 
+        run: >
+          mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
             -Dsonar.organization=naveen-jampala
-            "-Dsonar.projectName=spring-petclinic"
+            -Dsonar.projectName=spring-petclinic
             -Dsonar.projectKey=naveen-jampala_spring-petclinic
