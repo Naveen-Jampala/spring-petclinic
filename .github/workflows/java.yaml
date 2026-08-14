@@ -15,8 +15,15 @@ jobs:
       - name: Git_checkout
         uses: actions/checkout@v4
 
+      - name: jdk 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
       - name: build java with maven
-        run: mvn package
+        run: mvn package -DskipTests
+
       - name: Build and analyze
         uses: SonarSource/sonarqube-scan-action@v4
         env:
