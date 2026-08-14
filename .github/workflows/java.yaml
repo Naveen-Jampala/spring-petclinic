@@ -16,6 +16,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build and analyze
+        run: mvn package
+
+      -name: sonarqube scan
         env:
           SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}
           SONAR_HOST_URL: ${{secrets.SONAR_HOST_URL}}
