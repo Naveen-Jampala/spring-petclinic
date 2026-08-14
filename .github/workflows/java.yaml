@@ -9,17 +9,20 @@ jobs:
   build:                    #telling it that build or deploy job
     name: my-spc            #name: our wish
     runs-on: ubuntu-latest
+
+    
     steps:
       - name: Git_checkout
         uses: actions/checkout@v4
-
+      - name: build java with maven
+        run: mvn package
       - name: Build and analyze
-        uses: SonarSource?sonarqube-scan-action@v4
+        uses: SonarSource/sonarqube-scan-action@v4
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         with:
-          args: >
+         args: >
             -Dsonar.projectKey=naveen-jampala_spring-petclinic
             -Dsonar.organization=naveen-jampala
-           "-Dsonar.projectName=spring-petclinic"
+            -Dsonar.projectName=spring-petclinic
