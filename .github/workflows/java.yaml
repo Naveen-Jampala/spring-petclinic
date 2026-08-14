@@ -14,12 +14,6 @@ jobs:
     steps:
       - name: Git_checkout
         uses: actions/checkout@v4
-      
-      - name: set up jdk 21
-        uses: actions/setup-java@v4
-        with:
-          java-version: '21'
-          distribution: 'temurin'
 
       - name: build java with maven
         run: mvn package
@@ -30,6 +24,6 @@ jobs:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         with:
          args: >
-            -Dsonar.projectKey=naveen-jampala_spring-petclinic
             -Dsonar.organization=naveen-jampala
-            -Dsonar.projectName=spring-petclinic
+            "-Dsonar.projectName=spring-petclinic"
+            -Dsonar.projectKey=naveen-jampala_spring-petclinic
