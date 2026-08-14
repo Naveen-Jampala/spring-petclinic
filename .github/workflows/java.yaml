@@ -20,6 +20,7 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
+          
       - name: build java with maven
         run: mvn package
       - name: Build and analyze
